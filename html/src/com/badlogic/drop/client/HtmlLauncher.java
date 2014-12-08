@@ -7,13 +7,13 @@ import com.badlogic.drop.Drop;
 
 public class HtmlLauncher extends GwtApplication {
 
-        @Override
-        public GwtApplicationConfiguration getConfig () {
-                return new GwtApplicationConfiguration(480, 320);
-        }
+	@Override
+	public GwtApplicationConfiguration getConfig() {
+		return new GwtApplicationConfiguration(800, 480);
+	}
 
-        @Override
-        public ApplicationListener getApplicationListener () {
-                return new Drop();
-        }
+	@Override
+	public ApplicationListener getApplicationListener() {
+		return new Drop();
+	}
 }
