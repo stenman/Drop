@@ -37,6 +37,7 @@ public class Drop extends Game {
 	private Texture dropImage;
 	private Array<Rectangle> raindrops;
 	private long lastDropTime;
+	private long nextDropTime;
 	private Sound dropSound;
 
 	private BitmapFont font;
@@ -144,7 +145,7 @@ public class Drop extends Game {
 		}
 
 		// Raindrop spawn timer
-		if (TimeUtils.nanoTime() - lastDropTime > 1000000000) {
+		if (TimeUtils.nanoTime() - lastDropTime > nextDropTime) {
 			spawnRaindrop();
 		}
 
@@ -179,6 +180,7 @@ public class Drop extends Game {
 		raindrop.height = 64;
 		raindrops.add(raindrop);
 		lastDropTime = TimeUtils.nanoTime();
+		nextDropTime = MathUtils.random(300000000, 1200000000);
 	}
 
 	@Override
