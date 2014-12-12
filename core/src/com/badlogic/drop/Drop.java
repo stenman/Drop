@@ -2,7 +2,6 @@ package com.badlogic.drop;
 
 import java.util.Iterator;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -11,16 +10,14 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -82,7 +79,7 @@ public class Drop extends Game {
 	@Override
 	public void render() {
 		super.render();
-		
+
 		Gdx.gl.glClearColor(0, 0, 0.2f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -133,12 +130,20 @@ public class Drop extends Game {
 			bucket.setSize(bucket.width - 3, bucket.height - 3);
 		}
 
+		// Bucket size check
+		if (bucket.width < 20 || bucket.height < 20) {
+			bucket.setSize(bucket.width + 3, bucket.height + 3);
+		}
+		if (bucket.width > 250 || bucket.height > 250) {
+			bucket.setSize(bucket.width - 3, bucket.height - 3);
+		}
+
 		// Screen edge checks
 		if (bucket.x < 0) {
 			bucket.x = 0;
 		}
-		if (bucket.x > screenWidth - 64) {
-			bucket.x = screenWidth - 64;
+		if (bucket.x > screenWidth - bucket.width) {
+			bucket.x = screenWidth - bucket.width;
 		}
 
 		// Raindrop spawn timer
