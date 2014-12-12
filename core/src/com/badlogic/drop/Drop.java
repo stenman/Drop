@@ -8,6 +8,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -47,7 +48,6 @@ public class Drop extends Game {
 
 	@Override
 	public void create() {
-
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, screenWidth, screenHeight);
 
@@ -95,10 +95,7 @@ public class Drop extends Game {
 		bucketSprite.setColor(new Color(255, 10, 10, 255));
 		spriteBatch.draw(bucketSprite, bucket.x, bucket.y, bucket.width, bucket.height);
 
-		font.draw(spriteBatch, "bucket.width    : " + bucket.width, 20, screenHeight - 20);
-		font.draw(spriteBatch, "bucket.height   : " + bucket.height, 20, screenHeight - 40);
-		font.draw(spriteBatch, "bucketSprite.width    : " + bucketSprite.getWidth(), 20, screenHeight - 60);
-		font.draw(spriteBatch, "bucketSprite.height   : " + bucketSprite.getHeight(), 20, screenHeight - 80);
+		printOnScreenInfo();
 
 		for (Rectangle raindrop : raindrops) {
 			spriteBatch.draw(dropImage, raindrop.x, raindrop.y);
@@ -164,6 +161,14 @@ public class Drop extends Game {
 				iter.remove();
 			}
 		}
+	}
+
+	private void printOnScreenInfo() {
+		font.draw(spriteBatch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 20, screenHeight - 20);
+		font.draw(spriteBatch, "bucket.width: " + bucket.width, 20, screenHeight - 40);
+		font.draw(spriteBatch, "bucket.height: " + bucket.height, 20, screenHeight - 60);
+		font.draw(spriteBatch, "bucketSprite.width: " + bucketSprite.getWidth(), 20, screenHeight - 80);
+		font.draw(spriteBatch, "bucketSprite.height: " + bucketSprite.getHeight(), 20, screenHeight - 100);
 	}
 
 	private void spawnRaindrop() {
