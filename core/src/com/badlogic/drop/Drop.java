@@ -3,6 +3,7 @@ package com.badlogic.drop;
 import java.util.Iterator;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
@@ -24,7 +25,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 
-public class Drop extends ApplicationAdapter {
+public class Drop extends Game {
 
 	private Music rainMusic;
 
@@ -80,6 +81,8 @@ public class Drop extends ApplicationAdapter {
 
 	@Override
 	public void render() {
+		super.render();
+		
 		Gdx.gl.glClearColor(0, 0, 0.2f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
