@@ -1,4 +1,4 @@
 Drop
 ====
 
-A simple example of a libgdx game
+A simple example of a libgdx game.
